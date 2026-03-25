@@ -1,11 +1,11 @@
-# 🌾 Food Network
+# Food Network
 
 > **Share More. Waste Less. Feed More.**
 > A real-time web platform connecting food donors with receivers to reduce food wastage and feed those in need.
 
 ---
 
-## 📌 Table of Contents
+##  Table of Contents
 
 - [About the Project](#about-the-project)
 - [Features](#features)
@@ -23,7 +23,7 @@
 
 ---
 
-## 📖 About the Project
+## About the Project
 
 **Food Network** is a web-based platform built to bridge the gap between food surplus and food need. Every day, restaurants, hotels, and individuals throw away large quantities of perfectly good food while thousands of people go hungry nearby.
 
@@ -43,20 +43,20 @@ Food Network solves this by providing a simple, real-time digital marketplace wh
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔐 **User Authentication** — Register and login with email & password via Firebase Auth
-- 👤 **Role-based Access** — Separate dashboards for donors and receivers
-- 📋 **Post Food Listings** — Donors add food name, quantity, location, and pickup time
-- 📡 **Real-time Feed** — Receivers see new listings instantly without refreshing
-- 🤝 **Request System** — Receivers send pickup requests; donors confirm or reject
-- 🔔 **Live Notifications** — Instant status updates for both parties
-- 🗄️ **Firebase Backend** — Realtime Database stores and syncs all data
-- 📱 **Responsive Design** — Works on desktop and mobile browsers
+          **User Authentication** — Register and login with email & password via Firebase Auth
+             **Role-based Access** — Separate dashboards for donors and receivers
+            **Post Food Listings** — Donors add food name, quantity, location, and pickup time
+           **Real-time Feed** — Receivers see new listings instantly without refreshing
+           **Request System** — Receivers send pickup requests; donors confirm or reject
+          **Live Notifications** — Instant status updates for both parties
+            **Firebase Backend** — Realtime Database stores and syncs all data
+           **Responsive Design** — Works on desktop and mobile browsers
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -69,7 +69,7 @@ Food Network solves this by providing a simple, real-time digital marketplace wh
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -100,7 +100,7 @@ Food Network solves this by providing a simple, real-time digital marketplace wh
 
 ---
 
-## 🗄️ Database Structure
+##  Database Structure
 
 ```json
 {
@@ -152,7 +152,7 @@ Food Network solves this by providing a simple, real-time digital marketplace wh
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -182,7 +182,7 @@ npx serve .
 
 ---
 
-## 🔥 Firebase Setup
+##  Firebase Setup
 
 ### Step 1 — Create a Firebase Project
 
@@ -234,11 +234,11 @@ export const auth = getAuth(app);
 export const db = getDatabase(app);
 ```
 
-> ⚠️ **Never commit API keys to GitHub.** Use environment variables or a `.env` file and add `firebase-config.js` to `.gitignore`.
+> **Never commit API keys to GitHub.** Use environment variables or a `.env` file and add `firebase-config.js` to `.gitignore`.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 food-network/
@@ -263,7 +263,7 @@ food-network/
 
 ---
 
-## ⚙️ How It Works
+##  How It Works
 
 ### 1. Register & Login
 
@@ -340,7 +340,7 @@ async function confirmRequest(requestId, postId) {
 
 ---
 
-## 🔒 Security Rules
+##  Security Rules
 
 Paste these into **Firebase Console → Realtime Database → Rules**:
 
@@ -377,19 +377,8 @@ Paste these into **Firebase Console → Realtime Database → Rules**:
 
 ---
 
-## 👥 User Roles
 
-| Feature | Donor | Receiver |
-|--------|-------|----------|
-| Post food listing | ✅ | ❌ |
-| View food feed | ✅ | ✅ |
-| Send food request | ❌ | ✅ |
-| Confirm / reject request | ✅ | ❌ |
-| Delete own listing | ✅ | ❌ |
-
----
-
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! To contribute:
 
@@ -408,13 +397,13 @@ Contributions are welcome! To contribute:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 🙏 Acknowledgements
+##  Acknowledgements
 
 - [Firebase](https://firebase.google.com/) for the real-time backend
 - Built with a mission to reduce food waste and fight hunger

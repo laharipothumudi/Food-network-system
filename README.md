@@ -45,14 +45,14 @@ Food Network solves this by providing a simple, real-time digital marketplace wh
 
 ## Features
 
-          **User Authentication** — Register and login with email & password via Firebase Auth
-             **Role-based Access** — Separate dashboards for donors and receivers
-            **Post Food Listings** — Donors add food name, quantity, location, and pickup time
-           **Real-time Feed** — Receivers see new listings instantly without refreshing
-           **Request System** — Receivers send pickup requests; donors confirm or reject
-          **Live Notifications** — Instant status updates for both parties
-            **Firebase Backend** — Realtime Database stores and syncs all data
-           **Responsive Design** — Works on desktop and mobile browsers
+**User Authentication** — Register and login with email & password via Firebase Auth
+**Role-based Access** — Separate dashboards for donors and receivers
+**Post Food Listings** — Donors add food name, quantity, location, and pickup time
+**Real-time Feed** — Receivers see new listings instantly without refreshing
+**Request System** — Receivers send pickup requests; donors confirm or reject
+ **Live Notifications** — Instant status updates for both parties
+**Firebase Backend** — Realtime Database stores and syncs all data
+**Responsive Design** — Works on desktop and mobile browsers
 
 ---
 

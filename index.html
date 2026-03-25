@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Network — Share More, Waste Less</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6EE;
+    --warm-white: #FFF9F0;
+    --clay: #C4623A;
+    --clay-dark: #9E4A26;
+    --clay-light: #E8855E;
+    --saffron: #E8A83E;
+    --saffron-light: #F5CE7A;
+    --forest: #2C5F3D;
+    --forest-light: #3E7D54;
+    --charcoal: #2A2118;
+    --mid-brown: #7A5C42;
+    --light-brown: #C4A882;
+    --pale-green: #D4EBD8;
+    --pale-orange: #FAEBD7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(250,246,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,162,130,0.2);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--clay);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .nav-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--charcoal);
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--mid-brown);
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--clay); }
+  .nav-cta {
+    display: flex; gap: 12px;
+  }
+  .btn {
+    padding: 10px 22px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; border: none; text-decoration: none;
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--clay);
+    color: var(--clay);
+  }
+  .btn-outline:hover { background: var(--clay); color: white; }
+  .btn-fill {
+    background: var(--clay);
+    color: white;
+  }
+  .btn-fill:hover { background: var(--clay-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(196,98,58,0.35); }
+
+  /* ─── HERO ────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 48px 60px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,168,62,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -50px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(44,95,61,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--pale-green);
+    color: var(--forest);
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    animation: fadeSlideUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.05;
+    font-weight: 900;
+    color: var(--charcoal);
+    animation: fadeSlideUp 0.7s ease 0.1s both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+  .hero p {
+    margin-top: 20px;
+    font-size: 17px; line-height: 1.7;
+    color: var(--mid-brown);
+    max-width: 480px;
+    animation: fadeSlideUp 0.7s ease 0.2s both;
+  }
+  .hero-actions {
+    display: flex; gap: 14px; margin-top: 36px;
+    animation: fadeSlideUp 0.7s ease 0.3s both;
+  }
+  .hero-actions .btn { padding: 14px 28px; font-size: 15px; border-radius: 10px; }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    animation: fadeSlideUp 0.7s ease 0.4s both;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700;
+    color: var(--charcoal);
+  }
+  .stat-label { font-size: 12px; color: var(--light-brown); font-weight: 500; letter-spacing: 0.3px; }
+
+  /* ─── HERO VISUAL ─────────────────────────── */
+  .hero-visual {
+    position: relative;
+    animation: fadeSlideLeft 0.8s ease 0.2s both;
+  }
+  .hero-card-main {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(42,33,24,0.12);
+    position: relative;
+  }
+  .food-post-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .food-post-tag {
+    background: var(--pale-orange);
+    color: var(--clay);
+    padding: 4px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .food-post-time {
+    font-size: 12px; color: var(--light-brown);
+  }
+  .food-post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .food-post-meta {
+    display: flex; gap: 16px; margin-bottom: 16px;
+  }
+  .meta-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 13px; color: var(--mid-brown);
+  }
+  .meta-item .icon { font-size: 15px; }
+  .food-post-donor {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px; background: var(--cream);
+    border-radius: 10px; margin-bottom: 16px;
+  }
+  .donor-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--clay);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: 700;
+  }
+  .donor-info { flex: 1; }
+  .donor-name { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+  .donor-type { font-size: 11px; color: var(--light-brown); }
+  .verified { color: var(--forest); font-size: 13px; }
+
+  .request-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--clay);
+    color: white;
+    border: none; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .request-btn:hover { background: var(--clay-dark); }
+
+  .floating-card {
+    position: absolute;
+    background: white;
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 8px 28px rgba(42,33,24,0.12);
+    animation: float 4s ease-in-out infinite;
+  }
+  .float-card-1 {
+    top: -28px; right: -28px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .float-card-2 {
+    bottom: -24px; left: -28px;
+    animation-delay: 2s;
+  }
+  .float-icon { font-size: 22px; }
+  .float-label { font-size: 11px; color: var(--mid-brown); font-weight: 500; }
+  .float-value { font-size: 14px; font-weight: 700; color: var(--charcoal); }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s infinite;
+  }
+  .live-text { font-size: 11px; font-weight: 600; color: #22c55e; }
+
+  /* ─── HOW IT WORKS ────────────────────────── */
+  .section { padding: 80px 48px; }
+  .section-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--clay);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    font-weight: 800; line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--mid-brown);
+    line-height: 1.6; max-width: 520px;
+  }
+
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 28px; margin-top: 52px;
+  }
+  .step-card {
+    background: white;
+    border-radius: 16px; padding: 28px;
+    border: 1px solid rgba(196,162,130,0.2);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .step-card::before {
+    content: attr(data-num);
+    position: absolute; top: -12px; right: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px; font-weight: 900;
+    color: rgba(196,98,58,0.06);
+    line-height: 1;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(42,33,24,0.1);
+    border-color: rgba(196,98,58,0.3);
+  }
+  .step-icon-wrap {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 16px;
+  }
+  .step-icon-orange { background: var(--pale-orange); }
+  .step-icon-green { background: var(--pale-green); }
+  .step-icon-yellow { background: rgba(232,168,62,0.12); }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .step-desc { font-size: 14px; color: var(--mid-brown); line-height: 1.6; }
+
+  /* ─── FOOD FEED ───────────────────────────── */
+  .feed-section { background: white; }
+  .feed-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 36px;
+  }
+  .feed-filter {
+    display: flex; gap: 10px;
+  }
+  .filter-chip {
+    padding: 7px 16px; border-radius: 20px;
+    border: 1.5px solid rgba(196,162,130,0.3);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--mid-brown);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-chip.active, .filter-chip:hover {
+    background: var(--clay); color: white; border-color: var(--clay);
+  }
+
+  .feed-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feed-card {
+    border: 1px solid rgba(196,162,130,0.2);
+    border-radius: 16px; overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .feed-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(42,33,24,0.1);
+    border-color: var(--clay-light);
+  }
+  .feed-card-image {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+    position: relative;
+  }
+  .img-1 { background: linear-gradient(135deg, #FDE8D8, #FBBF8E); }
+  .img-2 { background: linear-gradient(135deg, #D4F1E0, #A8DEB8); }
+  .img-3 { background: linear-gradient(135deg, #FEF3C7, #FCD34D); }
+  .img-4 { background: linear-gradient(135deg, #FFE4E1, #FCA5A5); }
+  .img-5 { background: linear-gradient(135deg, #E0E7FF, #A5B4FC); }
+  .img-6 { background: linear-gradient(135deg, #F0FDF4, #86EFAC); }
+  .feed-card-body { padding: 16px 18px; }
+  .feed-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .feed-card-details {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .detail-badge {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; color: var(--mid-brown);
+  }
+  .feed-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid rgba(196,162,130,0.15);
+  }
+  .donor-tag {
+    font-size: 12px; font-weight: 600; color: var(--forest);
+    background: var(--pale-green);
+    padding: 3px 8px; border-radius: 5px;
+  }
+  .pickup-time { font-size: 12px; color: var(--clay); font-weight: 600; }
+
+  /* ─── REGISTER SECTION ────────────────────── */
+  .register-section {
+    background: var(--charcoal);
+    padding: 80px 48px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .register-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    color: white; line-height: 1.1; margin-bottom: 16px;
+  }
+  .register-left h2 em { color: var(--saffron); font-style: italic; }
+  .register-left p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .role-cards {
+    display: flex; gap: 14px; margin-top: 28px;
+  }
+  .role-card {
+    flex: 1; border-radius: 12px;
+    padding: 18px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .role-card:hover, .role-card.active {
+    border-color: var(--clay);
+    background: rgba(196,98,58,0.08);
+  }
+  .role-icon { font-size: 28px; margin-bottom: 8px; }
+  .role-name { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .role-desc { font-size: 12px; color: rgba(255,255,255,0.5); }
+
+  .register-form {
+    background: white; border-radius: 20px; padding: 36px;
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 4px;
+  }
+  .form-sub { font-size: 14px; color: var(--mid-brown); margin-bottom: 24px; }
+
+  .form-row { display: flex; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; margin-bottom: 16px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--mid-brown); letter-spacing: 0.3px; }
+  .form-input {
+    padding: 11px 14px;
+    border: 1.5px solid rgba(196,162,130,0.3);
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--charcoal); background: var(--cream);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-input:focus { border-color: var(--clay); background: white; }
+  .form-select {
+    padding: 11px 14px;
+    border: 1.5px solid rgba(196,162,130,0.3);
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--charcoal); background: var(--cream);
+    appearance: none; cursor: pointer; outline: none;
+  }
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--clay);
+    color: white; border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    margin-top: 4px;
+  }
+  .form-submit:hover { background: var(--clay-dark); transform: translateY(-1px); }
+  .form-divider {
+    text-align: center; font-size: 12px; color: var(--light-brown);
+    margin: 14px 0; position: relative;
+  }
+  .form-divider::before, .form-divider::after {
+    content: ''; position: absolute; top: 50%; width: calc(50% - 24px);
+    height: 1px; background: rgba(196,162,130,0.25);
+  }
+  .form-divider::before { left: 0; }
+  .form-divider::after { right: 0; }
+  .form-login {
+    text-align: center; font-size: 13px; color: var(--mid-brown);
+  }
+  .form-login a { color: var(--clay); font-weight: 600; text-decoration: none; }
+
+  /* ─── IMPACT ──────────────────────────────── */
+  .impact-section {
+    background: var(--forest);
+    padding: 72px 48px;
+    position: relative; overflow: hidden;
+  }
+  .impact-section::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .impact-section::after {
+    content: '';
+    position: absolute; bottom: -60px; left: -40px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .impact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .impact-left .section-label { color: var(--saffron-light); }
+  .impact-left .section-title { color: white; }
+  .impact-left .section-sub { color: rgba(255,255,255,0.65); }
+
+  .impact-metrics {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .metric-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 22px;
+  }
+  .metric-icon { font-size: 26px; margin-bottom: 10px; }
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px; font-weight: 900; color: white;
+  }
+  .metric-unit { font-size: 18px; font-weight: 400; }
+  .metric-label { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+  /* ─── FOOTER ──────────────────────────────── */
+  footer {
+    background: var(--charcoal);
+    padding: 40px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .footer-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: white;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.8); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ─── NOTIFICATION TOAST ──────────────────── */
+  .toast {
+    position: fixed; bottom: 32px; right: 32px; z-index: 200;
+    background: var(--forest);
+    color: white; padding: 14px 20px;
+    border-radius: 12px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(44,95,61,0.4);
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── MODAL ───────────────────────────────── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(42,33,24,0.5);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: white; border-radius: 20px; padding: 36px;
+    width: 480px; max-width: 94vw;
+    transform: scale(0.95); transition: transform 0.3s;
+    box-shadow: 0 24px 64px rgba(42,33,24,0.2);
+  }
+  .modal-overlay.open .modal { transform: scale(1); }
+  .modal-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: var(--charcoal);
+  }
+  .modal-close {
+    background: none; border: none; font-size: 20px;
+    cursor: pointer; color: var(--light-brown); line-height: 1;
+    padding: 2px 6px; border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--cream); }
+  .modal-food-info {
+    background: var(--cream); border-radius: 12px; padding: 16px;
+    margin-bottom: 20px;
+  }
+  .modal-food-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; margin-bottom: 8px;
+  }
+  .modal-meta { display: flex; gap: 16px; font-size: 13px; color: var(--mid-brown); }
+
+  /* ─── ANIMATIONS ──────────────────────────── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(32px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 90px 20px 40px; }
+    .hero-visual { display: none; }
+    .section { padding: 56px 20px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .feed-grid { grid-template-columns: 1fr 1fr; }
+    .register-section { grid-template-columns: 1fr; padding: 56px 20px; gap: 36px; }
+    .impact-inner { grid-template-columns: 1fr; gap: 36px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 20px; }
+  }
+  @media (max-width: 600px) {
+    .feed-grid { grid-template-columns: 1fr; }
+    .impact-metrics { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">🌾</div>
+    <span>FoodNetwork</span>
+  </div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#feed">Available Food</a>
+    <a href="#impact">Impact</a>
+    <a href="#register">Join Us</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#register" class="btn btn-outline">Login</a>
+    <a href="#register" class="btn btn-fill">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="live-dot"></div>
+      <span class="live-text">LIVE</span>
+      &nbsp;·&nbsp; 24 food posts available now
+    </div>
+    <h1>Share <em>food,</em><br>share kindness,<br>reduce waste.</h1>
+    <p>FoodNetwork connects generous donors — restaurants, hotels, and individuals — with NGOs and people who need food most. Together we fight hunger and food waste in real time.</p>
+    <div class="hero-actions">
+      <a href="#register" class="btn btn-fill">Donate Food</a>
+      <a href="#feed" class="btn btn-outline">Find Food</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4.2K</span>
+        <span class="stat-label">Meals Shared</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">180+</span>
+        <span class="stat-label">Active Donors</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">56</span>
+        <span class="stat-label">NGO Partners</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="food-post-header">
+        <span class="food-post-tag">🟢 Available</span>
+        <span class="food-post-time">Posted 8 min ago</span>
+      </div>
+      <div class="food-post-title">South Indian Thali Meal</div>
+      <div class="food-post-meta">
+        <div class="meta-item"><span class="icon">🍽️</span> 40 portions</div>
+        <div class="meta-item"><span class="icon">📍</span> Anna Nagar, Chennai</div>
+        <div class="meta-item"><span class="icon">⏰</span> Pickup by 7:00 PM</div>
+      </div>
+      <div class="food-post-donor">
+        <div class="donor-avatar">SR</div>
+        <div class="donor-info">
+          <div class="donor-name">Saravana Bhavan Restaurant</div>
+          <div class="donor-type">Restaurant · Verified Donor</div>
+        </div>
+        <span class="verified">✔</span>
+      </div>
+      <button class="request-btn" onclick="openModal()">
+        🤝 Request This Food
+      </button>
+    </div>
+
+    <div class="floating-card float-card-1">
+      <div class="float-icon">🔔</div>
+      <div>
+        <div class="float-value">New request!</div>
+        <div class="float-label">CareFirst NGO wants your food</div>
+      </div>
+    </div>
+    <div class="floating-card float-card-2">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="live-dot"></div>
+        <div>
+          <div class="float-value">Real-time updates</div>
+          <div class="float-label">Firebase-powered live feed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-label">Process</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:0">
+    <div>
+      <div class="section-title">How FoodNetwork<br>works</div>
+    </div>
+    <div class="section-sub">A simple, transparent process that connects donors and receivers in minutes — powered by Firebase for real-time updates.</div>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card" data-num="01">
+      <div class="step-icon-wrap step-icon-orange">👤</div>
+      <div class="step-title">Register & Login</div>
+      <div class="step-desc">Create your account as a donor (restaurant, hotel, or individual) or receiver (NGO, community organization, or individual in need).</div>
+    </div>
+    <div class="step-card" data-num="02">
+      <div class="step-icon-wrap step-icon-yellow">📋</div>
+      <div class="step-title">Post Food Details</div>
+      <div class="step-desc">Donors post food listings with the name, quantity, pickup location, and available time. It appears live on the feed instantly.</div>
+    </div>
+    <div class="step-card" data-num="03">
+      <div class="step-icon-wrap step-icon-green">🔍</div>
+      <div class="step-title">Browse Available Food</div>
+      <div class="step-desc">Receivers browse real-time food listings in their area. Filter by location, food type, or pickup time to find the right match.</div>
+    </div>
+    <div class="step-card" data-num="04">
+      <div class="step-icon-wrap step-icon-orange">🤝</div>
+      <div class="step-title">Request Food</div>
+      <div class="step-desc">Receivers send a request with pickup details. The donor receives an instant notification and reviews the request.</div>
+    </div>
+    <div class="step-card" data-num="05">
+      <div class="step-icon-wrap step-icon-green">✅</div>
+      <div class="step-title">Donor Confirms</div>
+      <div class="step-desc">The donor confirms the request. Both parties get notified with pickup details — no food goes to waste.</div>
+    </div>
+    <div class="step-card" data-num="06">
+      <div class="step-icon-wrap step-icon-yellow">🔥</div>
+      <div class="step-title">Firebase Sync</div>
+      <div class="step-desc">All data is stored and synced in real-time via Firebase. New posts, requests, and confirmations update instantly across all devices.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD FEED -->
+<section class="section feed-section" id="feed">
+  <div class="feed-header">
+    <div>
+      <div class="section-label">Live Listings</div>
+      <div class="section-title" style="margin-bottom:0">Available Food Near You</div>
+    </div>
+    <div class="feed-filter">
+      <button class="filter-chip active" onclick="setFilter(this)">All</button>
+      <button class="filter-chip" onclick="setFilter(this)">Meals</button>
+      <button class="filter-chip" onclick="setFilter(this)">Snacks</button>
+      <button class="filter-chip" onclick="setFilter(this)">Bakery</button>
+    </div>
+  </div>
+
+  <div class="feed-grid">
+    <div class="feed-card" onclick="openModal('Biriyani — Mixed Veg')">
+      <div class="feed-card-image img-1">🍛</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">Vegetable Biriyani</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 60 portions</span>
+          <span class="detail-badge">📍 T. Nagar</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Hotel Palmgrove</span>
+          <span class="pickup-time">⏰ Before 6 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-card" onclick="openModal('Fresh Idly & Sambar')">
+      <div class="feed-card-image img-2">🥣</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">Fresh Idly & Sambar</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 100 portions</span>
+          <span class="detail-badge">📍 Adyar</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Murugan Idli Shop</span>
+          <span class="pickup-time">⏰ Before 11 AM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-card" onclick="openModal('Assorted Bakery Items')">
+      <div class="feed-card-image img-3">🥐</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">Assorted Bakery Items</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 80 pieces</span>
+          <span class="detail-badge">📍 Nungambakkam</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Bread & Butter</span>
+          <span class="pickup-time">⏰ Before 8 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-card" onclick="openModal('Wedding Feast Leftovers')">
+      <div class="feed-card-image img-4">🎉</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">Wedding Feast — Full Meals</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 200 portions</span>
+          <span class="detail-badge">📍 Velachery</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Individual Donor</span>
+          <span class="pickup-time">⏰ Before 9 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-card" onclick="openModal('North Indian Thali')">
+      <div class="feed-card-image img-5">🍲</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">North Indian Thali</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 35 portions</span>
+          <span class="detail-badge">📍 Guindy</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Spice Route Restaurant</span>
+          <span class="pickup-time">⏰ Before 3 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feed-card" onclick="openModal('Fresh Salads & Fruits')">
+      <div class="feed-card-image img-6">🥗</div>
+      <div class="feed-card-body">
+        <div class="feed-card-title">Fresh Salads & Fruits</div>
+        <div class="feed-card-details">
+          <span class="detail-badge">🍽️ 50 portions</span>
+          <span class="detail-badge">📍 OMR</span>
+        </div>
+        <div class="feed-card-footer">
+          <span class="donor-tag">Green Bowl Café</span>
+          <span class="pickup-time">⏰ Before 5 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact-section" id="impact">
+  <div class="impact-inner">
+    <div class="impact-left">
+      <div class="section-label">Our Impact</div>
+      <div class="section-title">Every meal shared<br>changes a life</div>
+      <div class="section-sub" style="color:rgba(255,255,255,0.65)">
+        Since launch, FoodNetwork has diverted tons of food from landfills and delivered thousands of hot meals to people who need them most. These numbers grow every single day.
+      </div>
+    </div>
+    <div class="impact-metrics">
+      <div class="metric-card">
+        <div class="metric-icon">🍱</div>
+        <div class="metric-num">4.2<span class="metric-unit">K</span></div>
+        <div class="metric-label">Meals Delivered</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">♻️</div>
+        <div class="metric-num">1.8<span class="metric-unit">T</span></div>
+        <div class="metric-label">Tonnes Food Saved</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🏪</div>
+        <div class="metric-num">180<span class="metric-unit">+</span></div>
+        <div class="metric-label">Active Donors</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🤲</div>
+        <div class="metric-num">56</div>
+        <div class="metric-label">NGO Partners</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER SECTION -->
+<section class="register-section" id="register">
+  <div class="register-left">
+    <h2>Join the <em>network</em> today</h2>
+    <p>Whether you have surplus food to share or you're looking for nutritious meals — FoodNetwork connects you instantly. Sign up takes under 2 minutes.</p>
+    <div class="role-cards">
+      <div class="role-card active" onclick="selectRole(this, 'donor')">
+        <div class="role-icon">🍽️</div>
+        <div class="role-name">Food Donor</div>
+        <div class="role-desc">Restaurant, hotel, or individual</div>
+      </div>
+      <div class="role-card" onclick="selectRole(this, 'receiver')">
+        <div class="role-icon">🤲</div>
+        <div class="role-name">Food Receiver</div>
+        <div class="role-desc">NGO or individual in need</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="register-form">
+    <div class="form-title">Create your account</div>
+    <div class="form-sub">Start sharing or receiving food today</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input class="form-input" type="text" placeholder="Priya">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input class="form-input" type="text" placeholder="Kumar">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input class="form-input" type="email" placeholder="priya@example.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone Number</label>
+      <input class="form-input" type="tel" placeholder="+91 98765 43210">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Role</label>
+        <select class="form-select">
+          <option>Food Donor</option>
+          <option>NGO / Organization</option>
+          <option>Individual Receiver</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">City</label>
+        <input class="form-input" type="text" placeholder="Chennai">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" placeholder="••••••••">
+    </div>
+
+    <button class="form-submit" onclick="handleRegister()">Create Account →</button>
+    <div class="form-divider">or</div>
+    <div class="form-login">Already have an account? <a href="#">Sign in</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">🌾</div>
+    <span>FoodNetwork</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+    <a href="#">GitHub</a>
+  </div>
+  <div class="footer-copy">© 2024 FoodNetwork. Built to reduce food waste.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Request Food</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-food-info">
+      <div class="modal-food-name" id="modal-food-name">South Indian Thali</div>
+      <div class="modal-meta">
+        <span>🍽️ 40 portions</span>
+        <span>📍 Anna Nagar</span>
+        <span>⏰ Before 7 PM</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Your Name / Organization</label>
+      <input class="form-input" type="text" placeholder="CareFirst NGO">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contact Number</label>
+      <input class="form-input" type="tel" placeholder="+91 98765 43210">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Number of Portions Needed</label>
+      <input class="form-input" type="number" placeholder="40">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message to Donor (optional)</label>
+      <input class="form-input" type="text" placeholder="We serve 40 people daily at our shelter...">
+    </div>
+    <button class="form-submit" onclick="submitRequest()" style="margin-top:8px">Send Request 🤝</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span>✅</span>
+  <span id="toast-msg">Request sent successfully!</span>
+</div>
+
+<script>
+  function openModal(foodName) {
+    const modal = document.getElementById('modal');
+    if (foodName) document.getElementById('modal-food-name').textContent = foodName;
+    modal.classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  function submitRequest() {
+    closeModal();
+    setTimeout(() => showToast('✅ Request sent! Awaiting donor confirmation.'), 300);
+  }
+
+  function handleRegister() {
+    showToast('🎉 Account created! Welcome to FoodNetwork.');
+  }
+
+  function setFilter(el) {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function selectRole(el, role) {
+    document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const sel = document.querySelector('.form-select');
+    sel.value = role === 'donor' ? 'Food Donor' : 'NGO / Organization';
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Simulate a live update after 5 seconds
+  setTimeout(() => {
+    showToast('🔔 New post: 50 portions of Pongal available in Kodambakkam!');
+  }, 5000);
+</script>
+</body>
+</html>
